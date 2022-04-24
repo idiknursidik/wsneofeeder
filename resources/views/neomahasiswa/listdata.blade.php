@@ -3,7 +3,7 @@
 <div>
 @php    
     if(count($data->data) > 0){
-        $halaman = App\Helpers\Hfungsi::paging(count($datacount->data),$limit,$offset);
+        $halaman = App\Helpers\Hfungsi::paging(count($datacount->data),$limit,$offset,'neomahasiswa/listdata');
         echo $halaman; 
     }
 @endphp    

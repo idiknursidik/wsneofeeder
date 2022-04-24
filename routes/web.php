@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NeomahasiswaController;
+use App\Http\Controllers\NeodosenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,9 @@ Route::get('neomahasiswa/biodata/{id_mahasiswa}', [NeomahasiswaController::class
 Route::get('neomahasiswa/historiypendidikan/{id_mahasiswa}', [NeomahasiswaController::class, 'historiypendidikan' ]);
 Route::get('neomahasiswa/krs/{id_mahasiswa}', [NeomahasiswaController::class, 'krs' ]);
 Route::get('neomahasiswa/nilai/{id_mahasiswa}', [NeomahasiswaController::class, 'nilai' ]);
+
+Route::get('neodosen', [NeodosenController::class, 'index' ]);
+Route::post('neodosen/listdata', [NeodosenController::class, 'listdata' ]);
+
 
 

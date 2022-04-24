@@ -31,10 +31,10 @@ class Hfungsi {
 		}
 		return self::array_to_object($ret);
 	}
-	public function paging($numRows,$limit,$page){
+	public function paging($numRows,$limit,$page,$url){
 		$allPages       = ceil($numRows / $limit);	
 		$start          = ($page - 1) * $limit;	
-		$querystring = "neomahasiswa/listdata";	
+		$querystring = $url;	
 		foreach ($_GET as $key => $value) {
 			if ($key != "listdata") $paginHTML .= $key=$value;
 		}	
