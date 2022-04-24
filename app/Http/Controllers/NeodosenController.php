@@ -31,9 +31,9 @@ class NeodosenController extends Controller
         
     }
     public function detail(Request $request){
-        $id_mahasiswa = $request->id_mahasiswa;
+        $id_dosen = $request->id_dosen;
         $aksi = $request->aksi;
-        return view('neodosen.detail',compact('id_mahasiswa','aksi'));
+        return view('neodosen.detail',compact('id_dosen','aksi'));
     }
  
 }

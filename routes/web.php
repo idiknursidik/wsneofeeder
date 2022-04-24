@@ -35,6 +35,8 @@ Route::get('neomahasiswa/nilai/{id_mahasiswa}', [NeomahasiswaController::class, 
 
 Route::get('neodosen', [NeodosenController::class, 'index' ]);
 Route::post('neodosen/listdata', [NeodosenController::class, 'listdata' ]);
+Route::get('neodosen/detail/{aksi}/{id_dosen}', [NeodosenController::class, 'detail' ]);
+Route::get('neodosen/biodata/{id_dosen}', [NeodosenController::class, 'biodata' ]);
 
 
 
