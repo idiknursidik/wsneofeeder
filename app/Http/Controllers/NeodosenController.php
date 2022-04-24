@@ -35,5 +35,23 @@ class NeodosenController extends Controller
         $aksi = $request->aksi;
         return view('neodosen.detail',compact('id_dosen','aksi'));
     }
+    public function biodata(Request $request){
+        $feeder_akun = Session::get("neofeeder_akun");
+        $id_dosen = $request->id_dosen;
+        $filter = " id_dosen = '".$id_dosen."' ";
+        $data = Wsneofeeder::getrecord($feeder_akun->token,'GetListDosen',$filter);  
+        $GetAgama = Wsneofeeder::getrecord($feeder_akun->token,'GetAgama');
+        $kelamin = Mfungsi::kelamin();  
+        if($data->error_code == 0){
+            $databiodata = Wsneofeeder::getrecord($feeder_akun->token,'DetailBiodataDosen',$filter);
+        }else{
+            $databiodata = false;
+        }
+        if($data->error_code == 0){
+            return view('neodosen.biodata',compact('id_dosen','data','databiodata','GetAgama','kelamin'));
+        }else{
+            return $data->error_desc;
+        }
+    }
  
 }
