@@ -43,3 +43,9 @@
         </div>
     </div>
 </div>
+ <br>
+<div class="card">
+    <div class="card-header"> Informasi Detail Mahasiswa </div>
+    <div class="card-body">
+    </div>
+</div>
