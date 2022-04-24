@@ -98,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ (request()->is('neokelas*')) ? 'active' : '' }}" href="{{ url('neokelas') }}">
               <span data-feather="file-text"></span>
               Kelas Perkuliahan
             </a>

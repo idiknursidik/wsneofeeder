@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NeomahasiswaController;
 use App\Http\Controllers\NeodosenController;
+use App\Http\Controllers\NeokelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,8 @@ Route::post('neodosen/listdata', [NeodosenController::class, 'listdata' ]);
 Route::get('neodosen/detail/{aksi}/{id_dosen}', [NeodosenController::class, 'detail' ]);
 Route::get('neodosen/biodata/{id_dosen}', [NeodosenController::class, 'biodata' ]);
 
+Route::get('neokelas', [NeokelasController::class, 'index' ]);
+Route::post('neokelas/listdata', [NeokelasController::class, 'listdata' ]);
+Route::get('neokelas/detail/{aksi}/{id_kelas}', [NeokelasController::class, 'detail' ]);
 
 
