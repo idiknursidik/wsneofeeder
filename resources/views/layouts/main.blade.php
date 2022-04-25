@@ -103,6 +103,18 @@
               Kelas Perkuliahan
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ (request()->is('neonilai*')) ? 'active' : '' }}" href="{{ url('neonilai') }}">
+              <span data-feather="file-text"></span>
+              Nilai Perkuliahan
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ (request()->is('neoakm*')) ? 'active' : '' }}" href="{{ url('neoakm') }}">
+              <span data-feather="file-text"></span>
+              Aktivitas Kuliah Mahasiswa
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

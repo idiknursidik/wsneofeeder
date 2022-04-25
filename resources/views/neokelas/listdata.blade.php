@@ -28,7 +28,7 @@
             <td>Aksi</td>
             <td>{{ $no }}</td>
             <td>{{ $kelas->nama_semester }}</td>
-            <td><a href="{{ url('neokelas/detail/detaikelas') }}/{{ $kelas->id_kelas_kuliah }}">{{ $kelas->kode_mata_kuliah }}</a></td>
+            <td><a href="{{ url('neokelas/detail/detailkelas') }}/{{ $kelas->id_kelas_kuliah }}">{{ $kelas->kode_mata_kuliah }}</a></td>
             <td>{{ $kelas->nama_mata_kuliah }}</td>
             <td>{{ $kelas->nama_kelas_kuliah }}</td>
             <td>{{ $kelas->sks }}</td>

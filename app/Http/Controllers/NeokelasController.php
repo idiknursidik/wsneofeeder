@@ -17,7 +17,7 @@ class NeokelasController extends Controller
         $feeder_akun = Session::get("neofeeder_akun");
         //$token, $table, 
         $filter=($request->filter)?"kode_mata_kuliah LIKE '%".$request->filter."%' OR nama_mata_kuliah LIKE '%".$request->filter."%'":false; 
-        $order=false;
+        $order="id_semester DESC";
         $limit=20; 
         $offset=($request->page)?$request->page:0;
         $data = Wsneofeeder::getrecordset($feeder_akun->token,'GetListKelasKuliah',$filter,$order,$limit,$offset);        
@@ -40,16 +40,14 @@ class NeokelasController extends Controller
         $feeder_akun = Session::get("neofeeder_akun");
         $id_kelas_kuliah = $request->id_kelas_kuliah;
         $filter = " id_kelas_kuliah = '".$id_kelas_kuliah."' ";
-        $data = Wsneofeeder::getrecord($feeder_akun->token,'GetDataLengkapMahasiswaProdi',$filter);  
-        $GetAgama = Wsneofeeder::getrecord($feeder_akun->token,'GetAgama');
-        $kelamin = Mfungsi::kelamin();  
+        $data = Wsneofeeder::getrecord($feeder_akun->token,'GetListKelasKuliah',$filter);  
         if($data->error_code == 0){
-            $databiodata = Wsneofeeder::getrecord($feeder_akun->token,'GetDataLengkapMahasiswaProdi',$filter);
+            $datadetail = Wsneofeeder::getrecord($feeder_akun->token,'GetDetailKelasKuliah',$filter);
         }else{
-            $databiodata = false;
+            $datadetail = false;
         }
         if($data->error_code == 0){
-            return view('neokelas.biodata',compact('id_kelas_kuliah','data','databiodata','GetAgama','kelamin'));
+            return view('neokelas.detailkelas',compact('id_kelas_kuliah','data','datadetail'));
         }else{
             return $data->error_desc;
         }
