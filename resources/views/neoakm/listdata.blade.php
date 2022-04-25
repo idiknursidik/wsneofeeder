@@ -8,7 +8,7 @@
     }
 @endphp    
 </div>
-
+<br>
 <table class="table">
     <thead><tr><th>Aksi</th><th>No</th><th>NIM</th><th>Nama Mahasiswa</th><th>Program Studi</th><th>Angkatan</th><th>Semester</th><th>Status</th><th>IPS</th><th>IPK</th><th>sks Semester</th><th>sks Total</th></tr></thead>
     <tbody>   
