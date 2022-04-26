@@ -52,6 +52,33 @@ class NeoakmController extends Controller
         }   
     }
     public function tambah(){
-        return view('neoakm.tambah');
+        $feeder_akun = Session::get("neofeeder_akun");
+        $GetStatusMahasiswa = Wsneofeeder::getrecord($feeder_akun->token,'GetStatusMahasiswa');
+        $GetTahunAjaran = Wsneofeeder::getrecordset($feeder_akun->token,'GetTahunAjaran');
+        $semester = Mfungsi::semester();
+        $filter = "nama_status_mahasiswa = 'AKTIF'";
+        $datamahasiswa = Wsneofeeder::getrecordset($feeder_akun->token,'GetListMahasiswa',$filter);       
+        //dd($datamahasiswa);
+        if($GetStatusMahasiswa->error_code == 0){
+            return view('neoakm.tambah',compact('GetStatusMahasiswa','GetTahunAjaran','semester','datamahasiswa'));
+        }else{
+            $data = $GetStatusMahasiswa->error_desc.' | redirectting......';
+            return response()->view('expired', compact('data'), 200) 
+            ->header("Refresh", "3; url=/wsneofeeder"); 
+        }   
+    }
+    public function insert(Request $request){
+        $feeder_akun = Session::get("neofeeder_akun");
+        $records = $request->all();
+        unset($records['_token']);
+        //dd($records);
+        $insert = Wsneofeeder::insertws($feeder_akun->token, 'InsertPerkuliahanMahasiswa', $records);
+        $insert=json_decode($insert);
+        if($insert->error_code == 0){
+            $ret = array("success"=>true,"messages"=>$insert->data->id_registrasi_mahasiswa);
+        }else{
+            $ret = array("success"=>false,"messages"=>$insert->error_desc);
+        }
+        return response()->json($ret);
     }
 }
