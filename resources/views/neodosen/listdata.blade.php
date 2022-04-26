@@ -8,7 +8,6 @@
     }
 @endphp    
 </div>
-<input type="text" name="filter" value="{{ $filterret }}" class="form-control" href="{{ url('neodosen/listdata') }}">
 
 <table class="table">
     <thead><tr><th>Aksi</th><th>No</th><th>Nama</th><th>NIDN</th><th>Jenis Kelamin</th><th>Agama</th><th>Status</th><th>Tangal Lahir</th></tr></thead>

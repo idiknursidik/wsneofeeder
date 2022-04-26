@@ -16,7 +16,7 @@ class NeomahasiswaController extends Controller
     public function listdata(Request $request){
         $feeder_akun = Session::get("neofeeder_akun");
         //$token, $table, 
-        $filter=($request->filter)?"nama_mahasiswa LIKE '%".$request->filter."%'":false; 
+        $filter=($request->filter)?"nama_mahasiswa LIKE '%".$request->filter."%' OR nim LIKE '%".$request->filter."%'":false; 
         $order=false;
         $limit=20; 
         $offset=($request->page)?$request->page:0;

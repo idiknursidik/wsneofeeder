@@ -15,7 +15,7 @@ class NeoakmController extends Controller
     }
     public function listdata(Request $request){
         $feeder_akun = Session::get("neofeeder_akun");        
-        $filter=($request->filter)?"nama_mahasiswa LIKE '%".$request->filter."%' OR nim LIKE '%".$request->filter."%'":false; 
+        $filter=($request->filter)?"nama_mahasiswa LIKE '%".$request->filter."%' OR nim LIKE '%".$request->filter."%' OR angkatan LIKE '%".$request->filter."%'":false; 
         $order=false;
         $limit=20; 
         $offset=($request->page)?$request->page:0;
@@ -57,7 +57,8 @@ class NeoakmController extends Controller
         $GetTahunAjaran = Wsneofeeder::getrecordset($feeder_akun->token,'GetTahunAjaran');
         $semester = Mfungsi::semester();
         $filter = "nama_status_mahasiswa = 'AKTIF'";
-        $datamahasiswa = Wsneofeeder::getrecordset($feeder_akun->token,'GetListMahasiswa',$filter);       
+        $order = "nama_mahasiswa ASC";
+        $datamahasiswa = Wsneofeeder::getrecordset($feeder_akun->token,'GetListMahasiswa',$filter,$order);       
         //dd($datamahasiswa);
         if($GetStatusMahasiswa->error_code == 0){
             return view('neoakm.tambah',compact('GetStatusMahasiswa','GetTahunAjaran','semester','datamahasiswa'));
