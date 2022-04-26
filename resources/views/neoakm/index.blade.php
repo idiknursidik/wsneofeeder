@@ -3,7 +3,7 @@
 @section('container') 
 <input type="text" name="filter"  class="form-control" href="{{ url('neoakm/listdata') }}">
 <br>
-<a href="{{ url('neoakm/tambah') }}" title="Tambah Aktivitas Kuliah Mahasiswa">TAMBAH</a> | DAFTAR
+<a href="{{ url('neoakm/tambah') }}" title="Tambah Aktivitas Kuliah Mahasiswa">TAMBAH</a>
 <hr>
 <div id="resultcontent">loading data...</div>
 <meta name="csrf-token" content="{{ csrf_token() }}">

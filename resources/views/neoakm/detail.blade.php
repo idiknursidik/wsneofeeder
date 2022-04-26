@@ -1,7 +1,8 @@
 @extends('layouts/main')
 @section('title','Aktivitas Kuliah Mahasiswa')
 @section('container')
-
+<a href="{{ url('neoakm') }}">DAFTAR</a>
+<hr>
 <div id="resultcontent">loading data...</div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript">

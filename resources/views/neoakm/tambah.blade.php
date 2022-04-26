@@ -1,6 +1,8 @@
 @extends('layouts/main')
 @section('title','Aktivitas Kuliah Mahasiswa')
-@section('container') 
+@section('container')
+<a href="{{ url('neoakm') }}">DAFTAR</a>
+<hr>
 <div class="card">
     <div class="card-header"> Aktivitas Kuliah Mahasiswa</div>
     <div class="card-body">
