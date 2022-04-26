@@ -1,6 +1,7 @@
 @extends('layouts/main')
 @section('title','Dashboard')
 @section('container') 
+@inject('carbon', 'Carbon\Carbon')
     @if($dataptws->error_code == 0)
         <div class="container">
         @foreach($dataptws->data as $pt)
@@ -31,6 +32,25 @@
             <td>{{ $prodi->nama_program_studi }}</td>
             <td>{{ $prodi->nama_jenjang_pendidikan }}</td>
             <td>{{ $prodi->status }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+        </table>
+    @endif
+    <hr>
+    <h4>Peiode Lampau</h4>
+    @if(!empty($GetPeriodeLampau->data))
+        <table class="table">
+        <thead><tr><th>No</th><th>Nama Prodi</th><th>Semester</th><th>Tanggal Mulai</th><th>Tanggal Selesai</th><th>Tipe</th></tr></thead>
+        <tbody>
+        @foreach($GetPeriodeLampau->data as $periode)
+            <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $periode->program_studi }}</td>
+            <td>{{ $periode->semester }}</td>
+            <td>{{ $carbon::parse($periode->tanggal_mulai_periode)->format('d M Y') }}</td>
+            <td>{{ $carbon::parse($periode->tanggal_selesai_periode)->format('d M Y') }}</td>
+            <td>{{ $periode->tipe_periode }}</td>
             </tr>
         @endforeach
         </tbody>

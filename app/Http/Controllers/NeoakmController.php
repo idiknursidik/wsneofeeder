@@ -55,13 +55,15 @@ class NeoakmController extends Controller
         $feeder_akun = Session::get("neofeeder_akun");
         $GetStatusMahasiswa = Wsneofeeder::getrecord($feeder_akun->token,'GetStatusMahasiswa');
         $GetTahunAjaran = Wsneofeeder::getrecordset($feeder_akun->token,'GetTahunAjaran');
+        $GetPeriodeLampau = Wsneofeeder::getrecordset($feeder_akun->token,'GetPeriodeLampau');
+       
         $semester = Mfungsi::semester();
         $filter = "nama_status_mahasiswa = 'AKTIF'";
         $order = "nama_mahasiswa ASC";
         $datamahasiswa = Wsneofeeder::getrecordset($feeder_akun->token,'GetListMahasiswa',$filter,$order);       
         //dd($datamahasiswa);
         if($GetStatusMahasiswa->error_code == 0){
-            return view('neoakm.tambah',compact('GetStatusMahasiswa','GetTahunAjaran','semester','datamahasiswa'));
+            return view('neoakm.tambah',compact('GetStatusMahasiswa','GetTahunAjaran','semester','datamahasiswa','GetPeriodeLampau'));
         }else{
             $data = $GetStatusMahasiswa->error_desc.' | redirectting......';
             return response()->view('expired', compact('data'), 200) 
