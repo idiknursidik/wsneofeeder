@@ -49,5 +49,6 @@ Route::get('neoakm', [NeoakmController::class, 'index' ]);
 Route::post('neoakm/listdata', [NeoakmController::class, 'listdata' ]);
 Route::get('neoakm/detail/{aksi}/{id_mahasiswa}/{id_semester}', [NeoakmController::class, 'detail' ]);
 Route::get('neoakm/detailakm/{id_mahasiswa}/{id_semester}', [NeoakmController::class, 'detailakm' ]);
+Route::get('neoakm/tambah', [NeoakmController::class, 'tambah' ]);
 
 

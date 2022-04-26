@@ -14,8 +14,7 @@ class NeoakmController extends Controller
         return view('neoakm.index');
     }
     public function listdata(Request $request){
-        $feeder_akun = Session::get("neofeeder_akun");
-        
+        $feeder_akun = Session::get("neofeeder_akun");        
         $filter=($request->filter)?"nama_mahasiswa LIKE '%".$request->filter."%' OR nim LIKE '%".$request->filter."%'":false; 
         $order=false;
         $limit=20; 
@@ -27,8 +26,7 @@ class NeoakmController extends Controller
             return view('neoakm.listdata',compact('data','datacount','offset','filterret','limit'));
         }else{
             return $data->error_desc;
-        }    
-        
+        } 
     }
     public function detail(Request $request){
         $id_mahasiswa = $request->id_mahasiswa;
@@ -51,7 +49,9 @@ class NeoakmController extends Controller
             return view('neoakm.detailakm',compact('data','datacount','offset','filterret','limit','GetStatusMahasiswa'));
         }else{
             return $data->error_desc;
-        }    
-        
+        }   
+    }
+    public function tambah(){
+        return view('neoakm.tambah');
     }
 }
