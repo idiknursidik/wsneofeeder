@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col">
                     <label>sks Total</label>  
-                    <input type="text" class="form-control" name="sks_total" >
+                    <input type="text" class="form-control" name="total_sks" >
                     <small>*untuk decimal menggunakan titik</small>
                 </div>
                 <div class="col">

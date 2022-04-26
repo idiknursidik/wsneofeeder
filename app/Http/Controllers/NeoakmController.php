@@ -81,4 +81,23 @@ class NeoakmController extends Controller
         }
         return response()->json($ret);
     }
+    public function update(Request $request){
+        $feeder_akun = Session::get("neofeeder_akun");
+        $records = $request->all();
+        unset($records['_token']);
+        unset($records['id_registrasi_mahasiswa']);
+        unset($records['id_semester']);
+        //dd($records);
+        $key=array("id_registrasi_mahasiswa"=>$request->id_registrasi_mahasiswa,
+                    "id_semester"=>$request->id_semester);
+        
+        $insert = Wsneofeeder::updatews($feeder_akun->token,'UpdatePerkuliahanMahasiswa',$records,$key);
+        $insert=json_decode($insert);
+        if($insert->error_code == 0){
+            $ret = array("success"=>true,"messages"=>$insert->data->id_registrasi_mahasiswa);
+        }else{
+            $ret = array("success"=>false,"messages"=>$insert->error_desc);
+        }
+        return response()->json($ret);
+    }
 }

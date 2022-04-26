@@ -51,5 +51,6 @@ Route::get('neoakm/detail/{aksi}/{id_mahasiswa}/{id_semester}', [NeoakmControlle
 Route::get('neoakm/detailakm/{id_mahasiswa}/{id_semester}', [NeoakmController::class, 'detailakm' ]);
 Route::get('neoakm/tambah', [NeoakmController::class, 'tambah' ]);
 Route::post('neoakm/insert', [NeoakmController::class, 'insert' ]);
+Route::post('neoakm/update', [NeoakmController::class, 'update' ]);
 
 
