@@ -49,7 +49,7 @@
                     <small>*untuk decimal menggunakan titik</small>
                 </div>
                 <div class="col">
-                    <label>sks Semester [<a href="#" data-bs-target="#modalku" class="modalButton" data-bs-toggle="modal" data-src="#" title="TamKRS mahasiswa">KRS</a>]</label>  
+                    <label>sks Semester [<a href="#" id="cekkrs" data-bs-target="#modalku"  data-bs-toggle="modal" data-src="{{ url('neoakm/cekkrs') }}" title="KRS mahasiswa">Cek KRS</a>]</label>  
                     <input type="text" class="form-control" name="sks_semester">
                 </div>
             </div> 
@@ -98,6 +98,26 @@
            }
         });
 	});
+    $("#cekkrs").on("click",function(e){
+        e.preventDefault();
+        var id_mahasiswa = $("#id_registrasi_mahasiswa").val();
+        var id_semester = $("#id_semester").val();
+        var dString = "id_mahasiswa="+id_mahasiswa+"&id_semester="+id_semester;
+        var url =  "{{ url('neoakm/cekkrs') }}";
+        $(".modal-title").html($(this).attr('title')+'-'+id_semester);
+        $.ajax({
+           url:url,
+           method:'POST',
+           data:dString,
+           success:function(response){                
+                $('#modalisi').html(response);
+           },
+           error:function(error){
+              console.log(error)
+           }
+        });
+	});
+    
 
 </script>  
 @endsection

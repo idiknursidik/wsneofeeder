@@ -38,7 +38,7 @@
         </select>
         <table class="table">
             <thead>
-                <th>Action</th><th>No</th><th>Kode MK</th><th>Nama MK</th><th>Kelas</th><th>Bobot MK (sks)</th></tr>
+                <tr><th>Action</th><th>No</th><th>Kode MK</th><th>Nama MK</th><th>Kelas</th><th>Bobot MK (sks)</th></tr>
             </thead>
             <tbody>
             @if(empty($krs->data))

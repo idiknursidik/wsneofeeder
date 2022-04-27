@@ -151,7 +151,7 @@
             </div>
             <div class="modal-body" id="modalisi">Load content....</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
         </div>
     </div>

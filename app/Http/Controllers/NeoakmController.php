@@ -77,7 +77,13 @@ class NeoakmController extends Controller
         //dd($records);
         $insert = Wsneofeeder::insertws($feeder_akun->token, 'InsertPerkuliahanMahasiswa', $records);
         $insert=json_decode($insert);
+
         if($insert->error_code == 0){
+            //setelah insert harus update biar nambah
+            $key=array("id_registrasi_mahasiswa"=>$request->id_registrasi_mahasiswa,
+            "id_semester"=>$request->id_semester);
+            $update = Wsneofeeder::updatews($feeder_akun->token,'UpdatePerkuliahanMahasiswa',$records,$key);
+            
             $ret = array("success"=>true,"messages"=>$insert->data->id_registrasi_mahasiswa);
         }else{
             $ret = array("success"=>false,"messages"=>$insert->error_desc);
@@ -102,5 +108,18 @@ class NeoakmController extends Controller
             $ret = array("success"=>false,"messages"=>$insert->error_desc);
         }
         return response()->json($ret);
+    }
+    public function cekkrs(Request $request){
+        $feeder_akun = Session::get("neofeeder_akun");
+        $filternext =" id_registrasi_mahasiswa = '".$request->id_mahasiswa."' AND id_semester = '".$request->id_semester."'";
+        $krs = Wsneofeeder::getrecord($feeder_akun->token,'GetDetailNilaiPerkuliahanKelas',$filternext);
+        
+        if($krs->error_code == 0){
+            return view('neoakm.cekkrs',compact('krs'));
+        }else{
+            $data = $krs->error_desc.' | redirectting......';
+            return response()->view('expired', compact('data'), 200) 
+            ->header("Refresh", "3; url=/wsneofeeder"); 
+        }  
     }
 }
