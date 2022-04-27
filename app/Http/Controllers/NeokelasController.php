@@ -43,11 +43,15 @@ class NeokelasController extends Controller
         $data = Wsneofeeder::getrecord($feeder_akun->token,'GetListKelasKuliah',$filter);  
         if($data->error_code == 0){
             $datadetail = Wsneofeeder::getrecord($feeder_akun->token,'GetDetailKelasKuliah',$filter);
+           
+            $filtermatkul = "id_matkul = '".$data->data[0]->id_matkul."'";
+            $datamatakuliah = Wsneofeeder::getrecord($feeder_akun->token,'GetDetailMataKuliah',$filtermatkul);
+            $filterkelas = "id_kelas_kuliah = '".$data->data[0]->id_kelas_kuliah."'";
         }else{
             $datadetail = false;
         }
         if($data->error_code == 0){
-            return view('neokelas.detailkelas',compact('id_kelas_kuliah','data','datadetail'));
+            return view('neokelas.detailkelas',compact('id_kelas_kuliah','data','datadetail','datamatakuliah'));
         }else{
             return $data->error_desc;
         }
