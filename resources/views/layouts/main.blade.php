@@ -12,8 +12,11 @@
     <!-- Bootstrap core CSS -->
 <link href="{{ url('/public/assets/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{ url('/public/assets/dist/js/jquery.js') }}"></script>
+<link href="{{ url('/public/assets/dist/css/select2.min.css') }}" rel="stylesheet" />
+<script src="{{ url('/public/assets/dist/js/select2.min.js') }}"></script>
 
+<link href="{{ url('/public/assets/dist/css/select2-bootstrap5.css') }}" rel="stylesheet">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;

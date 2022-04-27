@@ -54,9 +54,9 @@ class NeoakmController extends Controller
     public function tambah(){
         $feeder_akun = Session::get("neofeeder_akun");
         $GetStatusMahasiswa = Wsneofeeder::getrecord($feeder_akun->token,'GetStatusMahasiswa');
-        $GetTahunAjaran = Wsneofeeder::getrecordset($feeder_akun->token,'GetTahunAjaran');
+        $GetTahunAjaran = Wsneofeeder::getrecordset($feeder_akun->token,'GetTahunAjaran',false,"id_tahun_ajaran ASC");
         $GetPeriodeLampau = Wsneofeeder::getrecordset($feeder_akun->token,'GetPeriodeLampau');
-       
+
         $semester = Mfungsi::semester();
         $filter = "nama_status_mahasiswa = 'AKTIF'";
         $order = "nama_mahasiswa ASC";

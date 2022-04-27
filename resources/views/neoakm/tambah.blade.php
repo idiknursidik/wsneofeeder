@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col">
                     <label>Mahasiswa</label> 
-                    <select class="form-control" name="id_registrasi_mahasiswa">
+                    <select class="form-control" name="id_registrasi_mahasiswa" id="id_registrasi_mahasiswa">
                         @foreach($datamahasiswa->data as $mhs)
                             <option value="{{ $mhs->id_registrasi_mahasiswa }}"> {{ $mhs->nim }}-{{ $mhs->nama_mahasiswa }} </option>
                         @endforeach
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col"> 
                     <label>Semester</label> 
-                    <select class="form-control" name="id_semester">
+                    <select class="form-control" name="id_semester" id="id_semester">
                         @foreach($GetTahunAjaran->data as $thnajaran)
                             @foreach($semester as $key=>$val)
                                 <option value="{{ $thnajaran->id_tahun_ajaran }}{{ $key }}" @if($thnajaran->a_periode_aktif == 1 && $key==1) selected="selected" @endif> {{ $thnajaran->nama_tahun_ajaran }} {{ $val }} </option>
@@ -75,7 +75,9 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
+    $('#id_registrasi_mahasiswa,#id_semester').select2({
+        theme: 'bootstrap-5'
+    });
     $("#form-tambah").on("submit",function(e){
         e.preventDefault();
         var dString = $(this).serialize();
