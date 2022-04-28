@@ -44,6 +44,8 @@ Route::get('neokelas', [NeokelasController::class, 'index' ]);
 Route::post('neokelas/listdata', [NeokelasController::class, 'listdata' ]);
 Route::get('neokelas/detail/{aksi}/{id_kelas_kuliah}', [NeokelasController::class, 'detail' ]);
 Route::get('neokelas/detailkelas/{id_kelas_kuliah}', [NeokelasController::class, 'detailkelas' ]);
+Route::get('neokelas/tambah', [NeokelasController::class, 'tambah' ]);
+Route::post('neokelas/insert', [NeokelasController::class, 'insert' ]);
 
 Route::get('neoakm', [NeoakmController::class, 'index' ]);
 Route::post('neoakm/listdata', [NeoakmController::class, 'listdata' ]);

@@ -21,4 +21,23 @@ class Mfungsi extends Model
         }
 		return $ret;
     }
+    public function lingkupkelas($val=false){
+        $data = array("1"=>"Internal","2"=>"External","3"=>"Campuran");
+        if($val){
+            $ret = $data[$val];
+        }else{
+            $ret = $data;
+        }
+		return $ret;
+    }
+    public function modekuliah($val=false){
+        $data = array("1"=>"Online","2"=>"Offline","3"=>"Campuran");
+        if($val){
+            $ret = $data[$val];
+        }else{
+            $ret = $data;
+        }
+		return $ret;
+    }
+    
 }

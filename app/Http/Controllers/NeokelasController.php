@@ -26,7 +26,9 @@ class NeokelasController extends Controller
         if($data->error_code == 0){
             return view('neokelas.listdata',compact('data','datacount','offset','filterret','limit'));
         }else{
-            return $data->error_desc;
+            $data = $data->error_desc.' | redirectting......';
+            return response()->view('expired', compact('data'), 200) 
+            ->header("Refresh", "3; url=/wsneofeeder"); 
         }    
         
     }
@@ -53,7 +55,50 @@ class NeokelasController extends Controller
         if($data->error_code == 0){
             return view('neokelas.detailkelas',compact('id_kelas_kuliah','data','datadetail','datamatakuliah'));
         }else{
-            return $data->error_desc;
+            $data = $data->error_desc.' | redirectting......';
+            return response()->view('expired', compact('data'), 200) 
+            ->header("Refresh", "3; url=/wsneofeeder"); 
         }
     }
+    public function tambah(Request $request){
+        $feeder_akun = Session::get("neofeeder_akun");
+        $dataprodi = Wsneofeeder::getrecordset($feeder_akun->token,'GetProdi');
+        $GetTahunAjaran = Wsneofeeder::getrecordset($feeder_akun->token,'GetTahunAjaran',false,"id_tahun_ajaran ASC");
+        $GetMataKuliah = Wsneofeeder::getrecordset($feeder_akun->token,'GetMatkulKurikulum',false,"kode_mata_kuliah ASC"); 
+        $semester = Mfungsi::semester();
+        $lingkupkelas = Mfungsi::lingkupkelas();
+        $modekuliah = Mfungsi::modekuliah();
+        if($dataprodi->error_code == 0){
+            return view('neokelas.tambah',compact('dataprodi','GetTahunAjaran','semester','GetMataKuliah','lingkupkelas','modekuliah'));
+        }else{
+            $data = $dataprodi->error_desc.' | redirectting......';
+            return response()->view('expired', compact('data'), 200) 
+            ->header("Refresh", "3; url=/wsneofeeder"); 
+        }        
+    }
+    public function insert(Request $request){
+        $feeder_akun = Session::get("neofeeder_akun");
+        //matakuliah
+        $filtermatkul = "id_matkul = '".$request->id_matkul."'";
+        $datamatakuliah = Wsneofeeder::getrecord($feeder_akun->token,'GetDetailMataKuliah',$filtermatkul);
+        $records = $request->all();
+        unset($records['_token']);
+       //dd($datamatakuliah->data[0]);
+        $records['sks_mk']=$datamatakuliah->data[0]->sks_mata_kuliah;
+        $records['sks_tm']=$datamatakuliah->data[0]->sks_tatap_muka;
+        $records['sks_prak']=$datamatakuliah->data[0]->sks_praktek;
+        $records['sks_sim']=$datamatakuliah->data[0]->sks_simulasi;
+
+        dd($records);
+        $insert = Wsneofeeder::insertws($feeder_akun->token, 'InsertKelasKuliah', $records);
+        $insert=json_decode($insert);
+
+        if($insert->error_code == 0){            
+            $ret = array("success"=>true,"id_kelas_kuliah"=>$insert->data->id_kelas_kuliah,"messages"=>$insert->data->id_kelas_kuliah);
+        }else{
+            $ret = array("success"=>false,"messages"=>$insert->error_desc);
+        }
+        return response()->json($ret);
+        //redirect ke detail kelas
+    }    
 }

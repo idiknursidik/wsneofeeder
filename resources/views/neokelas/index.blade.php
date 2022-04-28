@@ -2,8 +2,11 @@
 @section('title','Kelas')
 @section('container') 
 <input type="text" name="filter" class="form-control" href="{{ url('neokelas/listdata') }}">
-
+<br>
+<a href="{{ url('neokelas/tambah') }}">TAMBAH</a>
+<br><br>
 <div id="resultcontent">loading data...</div>
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript">
 $.ajaxSetup({
