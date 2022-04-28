@@ -95,7 +95,7 @@
            success:function(response){
               if(response.success == true){
                   alert(response.messages) //Message come from controller
-                  window.location.href = "{{ url('neokelas/detailkelas/') }}"+response.id_kelas_kuliah; 
+                  window.location.href = "{{ url('neokelas/detail/detailkelas') }}/"+response.id_kelas_kuliah; 
                 }else{
                   alert(response.messages)
               }

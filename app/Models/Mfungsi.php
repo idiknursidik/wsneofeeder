@@ -31,7 +31,7 @@ class Mfungsi extends Model
 		return $ret;
     }
     public function modekuliah($val=false){
-        $data = array("1"=>"Online","2"=>"Offline","3"=>"Campuran");
+        $data = array("O"=>"Online","O"=>"Offline","C"=>"Campuran");
         if($val){
             $ret = $data[$val];
         }else{

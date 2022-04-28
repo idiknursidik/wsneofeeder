@@ -13,4 +13,5 @@ $.ajaxSetup({
 });
 $("#resultcontent").load("{{ url('neokelas') }}/{{ $aksi }}/{{ $id_kelas_kuliah }}");
 </script>
+
 @endsection
