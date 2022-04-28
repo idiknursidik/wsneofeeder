@@ -84,12 +84,41 @@ class NeokelasController extends Controller
         $records = $request->all();
         unset($records['_token']);
        //dd($datamatakuliah->data[0]);
-        $records['sks_mk']=$datamatakuliah->data[0]->sks_mata_kuliah;
-        $records['sks_tm']=$datamatakuliah->data[0]->sks_tatap_muka;
-        $records['sks_prak']=$datamatakuliah->data[0]->sks_praktek;
-        $records['sks_sim']=$datamatakuliah->data[0]->sks_simulasi;
-
-        dd($records);
+        $records['sks_mk']=substr($datamatakuliah->data[0]->sks_mata_kuliah,0,1);
+        $records['sks_tm']=substr($datamatakuliah->data[0]->sks_tatap_muka,0,1);
+        $records['sks_prak']=substr($datamatakuliah->data[0]->sks_praktek,0,1);
+        $records['sks_sim']=substr($datamatakuliah->data[0]->sks_simulasi,0,1);
+        $records['bahasan']=null;
+        $records['a_selenggara_pditt']=1;
+        $records['apa_untuk_pditt']=0;
+        $records['kapasitas']=substr($datamatakuliah->data[0]->sks_simulasi,0,1);
+        $records['id_mou']=null;
+        $records['id_kelas_kuliah']=null;
+        echo "<pre>";
+        print_r($records);
+        echo "</pre>";
+        $a=array("id_prodi"=>"1180e248-26cc-48ef-8835-e6cd86b3d240",
+        "id_semester"=>"20201",
+        "nama_kelas_kuliah"=>"xxx",
+        "sks_mk"=>"2",
+        "sks_tm"=>"2",
+        "sks_prak"=>"0",
+        "sks_prak_lap"=>"0",
+        "sks_sim"=>"0",
+        "bahasan"=>"20181@2018@79201@MKP 8049@M",
+        "a_selenggara_pditt"=>1,
+        "apa_untuk_pditt"=>0,
+        "kapasitas"=>30,
+        "tanggal_mulai_efektif"=>"2019-09-16",
+        "tanggal_akhir_efektif"=>"2019-10-16",
+        "id_mou"=>null,
+        "id_matkul"=>"1f9104c5-4600-4718-9106-d5f74443a5c9",
+        "id_kelas_kuliah"=>null,
+        "lingkup"=>1,
+        "mode"=>"O");
+        echo "<pre>";
+        print_r($a);
+        echo "</pre>";
         $insert = Wsneofeeder::insertws($feeder_akun->token, 'InsertKelasKuliah', $records);
         $insert=json_decode($insert);
 
