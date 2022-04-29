@@ -103,7 +103,7 @@ class Wsneofeeder {
 	
 	
 	public static function cekkoneksifeeder(){
-		$feeder_akun = Session::get('feeder_akun');
+		$feeder_akun = Session::get('neofeeder_akun');
 		$dataws = array('act'=>'GetToken','username'=>$feeder_akun->username,'password'=>$feeder_akun->password);
 		$returnws = self::runWS($dataws,false,$feeder_akun->url);
 		$returnws = json_decode($returnws);

@@ -121,16 +121,15 @@ class NeokelasController extends Controller
         unset($records['id_kelas_kuliah']);
         $records['kapasitas']=0;
         $records['sks_mata_kuliah']= "".($request->sks_tatap_muka+$request->sks_praktek+$request->sks_praktek_lapangan+$request->sks_simulasi)."";
-        
-       //dd($records);
-        $key="id_kelas_kuliah= '".$request->id_kelas_kuliah."'";
-        $insert = Wsneofeeder::updatews($feeder_akun->token, 'InsertKelasKuliah', $records,$key);
-        $insert=json_decode($insert);
+        //dd($records);
+        $key="id_kelas_kuliah = '".$request->id_kelas_kuliah."'";
+        $update = Wsneofeeder::updatews($feeder_akun->token,'UpdateKelasKuliah',$records,$key);
+        $update=json_decode($update);
 
-        if($insert->error_code == 0){            
-            $ret = array("success"=>true,"id_kelas_kuliah"=>$insert->data->id_kelas_kuliah,"messages"=>$insert->data->id_kelas_kuliah);
+        if($update->error_code == 0){            
+            $ret = array("success"=>true,"id_kelas_kuliah"=>$update->data->id_kelas_kuliah,"messages"=>$insert->data->id_kelas_kuliah);
         }else{
-            $ret = array("success"=>false,"messages"=>$insert->error_desc);
+            $ret = array("success"=>false,"messages"=>$update->error_desc);
         }
         return response()->json($ret);
     }    

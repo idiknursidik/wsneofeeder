@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DictionaryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NeomahasiswaController;
@@ -25,6 +26,10 @@ Route::get('/', function () {
 Route::get('dashboard', [DashboardController::class, 'index' ]);
 Route::post('login', [LoginController::class, 'index' ]);
 Route::get('login/logout', [LoginController::class, 'logout' ]);
+//kamus
+Route::get('dictionary', [DictionaryController::class, 'index' ]);
+Route::post('dictionary', [DictionaryController::class, 'getdictionary' ]);
+
 
 //mahasiswa
 Route::get('neomahasiswa', [NeomahasiswaController::class, 'index' ]);
