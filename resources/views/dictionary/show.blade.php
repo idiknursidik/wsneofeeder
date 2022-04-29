@@ -1,12 +1,14 @@
 <table class="table">
     <thead><tr><th>No</th><th>Nama Field</th><th>Keterangan</th></tr></thead>
     <tbody>
+        @php $no=0; @endphp
         @foreach($data->data->response as $key=>$val)
-            @if(!in_array($key,array('error_code','error_desc')))
+            @if(!in_array($key,array('error_code','error_desc','data')))
+            @php $no++ @endphp
             <tr>
-                <td>{{ ($loop->iteration-2)  }}</td>
+                <td>{{ $no  }}</td>
                 <td>{{ str_replace(array('data[',']'),array(""),$key) }}</td>
-                <td>{{ $val->keterangan }}</td>
+                <td>@if($val->keterangan) {{ $val->keterangan }} @else @endif</td>
             </tr>
             @endif
         @endforeach
