@@ -10,8 +10,18 @@ use Carbon\Carbon;
 
 class NeokelasController extends Controller
 {
-    public function index(){       
-        return view('neokelas.index');
+    public function index(){
+        $feeder_akun = Session::get("neofeeder_akun");
+        $data = Wsneofeeder::getrecordset($feeder_akun->token,'GetProfilPT',false,false,'1','0');      
+        
+        if($data->error_code == 0){
+            return view('neokelas.index');
+        }else{
+            $data = $data->error_desc.' | redirectting......';
+            return response()->view('expired', compact('data'), 200) 
+            ->header("Refresh", "3; url=/wsneofeeder"); 
+        }              
+        
     }
     public function listdata(Request $request){
         $feeder_akun = Session::get("neofeeder_akun");
